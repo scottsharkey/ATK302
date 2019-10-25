@@ -64,6 +64,7 @@ function draw() {
 
     case 2: // the win state
       background("blue");
+      song1.stop()
       background(bg);
       fill("white");
       textFont(myFont);
@@ -74,6 +75,7 @@ function draw() {
 
     case 3: // the lose state
       background("blue");
+      song1.stop()
       background(bg);
       fill("white");
       textFont(myFont);
