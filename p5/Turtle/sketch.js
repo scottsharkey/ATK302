@@ -10,9 +10,11 @@ var x = 0;
 var vel = 3;
 var bg;
 var song1;
+var sound2;
 
 function preload(){
   song1 = loadSound('assets/underwatersound.mp3');
+  sound2 = loadSound('assets/eating.mp3');
 }
 
 
@@ -185,6 +187,9 @@ function game() {
     cars[i].drive();
     if (cars[i].pos.dist(frogPos) < 50) {
       cars.splice(i, 1);
+      sound2.stop();
+      sound2.play();
+
     }
   }
 
