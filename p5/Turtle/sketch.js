@@ -12,7 +12,7 @@ var bg;
 var song1;
 var sound2;
 
-function preload(){
+function preload() {
   song1 = loadSound('assets/underwatersound.mp3');
   sound2 = loadSound('assets/eating.mp3');
 }
@@ -28,14 +28,13 @@ function setup() {
   myFont = loadFont('assets/Road_Rage.otf');
 
 
-  for (var i = 0; i < 50; i++)
-  {
+  for (var i = 0; i < 50; i++) {
     cars.push(new Car());
   }
-yodaR = loadImage("assets/TurtleR.png");
-yodaL = loadImage("assets/TurtleL.png");
-yoda = yodaR;
-bird = loadImage("assets/Straw.png");
+  yodaR = loadImage("assets/TurtleR.png");
+  yodaL = loadImage("assets/TurtleL.png");
+  yoda = yodaR;
+  bird = loadImage("assets/Straw.png");
   frogPos = createVector(width / 2, height - 80);
   rectMode(CENTER);
   ellipseMode(CENTER);
@@ -46,61 +45,61 @@ function draw() {
   switch (myState) {
 
     case 0: // splash screen
-    background("blue");
-    background(bg);
-    fill("white");
-    textFont(myFont);
-    textSize(36);
-    text("Click to Play Straw Slaughter!", 100, 400);
+      background("blue");
+      background(bg);
+      fill("white");
+      textFont(myFont);
+      textSize(36);
+      text("Click to Play Straw Slaughter!", 100, 400);
       break;
 
     case 1: // the game state
       game();
       timer++;
-      if (timer>5000){
+      if (timer > 5000) {
         myState = 3;
-        timer = 0 ;
+        timer = 0;
       }
       break;
 
     case 2: // the win state
-    background("blue");
-    background(bg);
-    fill("white");
-    textFont(myFont);
-    textSize(36);
-    text("You Win!", 100, 400);
-    text("Click to Play Again!", 100, 600);
+      background("blue");
+      background(bg);
+      fill("white");
+      textFont(myFont);
+      textSize(36);
+      text("You Win!", 100, 400);
+      text("Click to Play Again!", 100, 600);
       break;
 
     case 3: // the lose state
-    background("blue");
-    background(bg);
-    fill("white");
-    textFont(myFont);
-    textSize(36);
-    text("You Lose!", 100, 400);
-    text("Click to Try Again!", 100, 600);
+      background("blue");
+      background(bg);
+      fill("white");
+      textFont(myFont);
+      textSize(36);
+      text("You Lose!", 100, 400);
+      text("Click to Try Again!", 100, 600);
       break;
 
   }
 }
 
 function mouseReleased() {
-switch(myState){
-  case 0:
-  myState = 1;
-  break;
+  switch (myState) {
+    case 0:
+      myState = 1;
+      break;
 
-  case 2:
-  resetTheGame();
-  myState = 0;
-  break;
+    case 2:
+      resetTheGame();
+      myState = 0;
+      break;
 
-  case 3:
-  resetTheGame();
-  myState = 0;
-  break;
+    case 3:
+      resetTheGame();
+      myState = 0;
+      break;
 
   }
 }
@@ -113,7 +112,7 @@ function Car() {
   this.r = random(255);
   this.g = random(255);
   this.b = random(255);
-  this.birdNum = floor(random(birds.length-1));
+  this.birdNum = floor(random(birds.length - 1));
   this.timer = 0;
   this.maxTimer = random(10, 30);
 
@@ -126,12 +125,12 @@ function Car() {
     //ellipse(this.pos.x + 45, this.pos.y + 25, 50, 50);
     image(birds[this.birdNum], this.pos.x, this.pos.y, 10, 40);
 
-      this.timer = this.timer + 1;
-      if (this.timer > this.maxTimer) {
-        this.birdNum = this.birdNum + 1;
-        this.timer = 0;
-      }
-      if (this.birdNum > birds.length-1) this.birdNum = 0;
+    this.timer = this.timer + 1;
+    if (this.timer > this.maxTimer) {
+      this.birdNum = this.birdNum + 1;
+      this.timer = 0;
+    }
+    if (this.birdNum > birds.length - 1) this.birdNum = 0;
   }
 
   this.drive = function() {
@@ -146,8 +145,7 @@ function Car() {
 
 }
 
-function keyPressed()
-{
+function keyPressed() {
   if (keyCode == LEFT_ARROW) yoda = yodaL;
   if (keyCode == RIGHT_ARROW) yoda = yodaR;
 }
@@ -167,19 +165,19 @@ function game() {
   song1.play();
   background(bg);
   fill("lime");
-  triangle(x-40, 400, x-10, 425, x-40, 450);
+  triangle(x - 40, 400, x - 10, 425, x - 40, 450);
   fill("blue");
   ellipse(x, 425, 60, 40);
   fill("blue");
-  triangle(x-40, 175, x-10, 200, x-40, 225);
+  triangle(x - 40, 175, x - 10, 200, x - 40, 225);
   fill("cyan");
   ellipse(x, 200, 60, 40);
   fill("red");
-  triangle(x+10, 295, x+30, 320, x+10, 345);
+  triangle(x + 10, 295, x + 30, 320, x + 10, 345);
   fill("orange");
-  ellipse(x+50, 320, 60, 40);
+  ellipse(x + 50, 320, 60, 40);
   x = x + vel;
-  if (x > width){
+  if (x > width) {
     x = 0;
   }
   for (var i = 0; i < cars.length; i++) {
@@ -194,16 +192,17 @@ function game() {
   }
 
 
-if (cars.length == 0){
-  myState = 2;
-}
+  if (cars.length == 0) {
+    myState = 2;
+  }
   // draw the frog
   fill('green');
   //ellipse(frogPos.x, frogPos.y, 60, 60);
   image(yoda, frogPos.x, frogPos.y, 100, 75);
   checkForKeys();
 }
-function resetTheGame(){
+
+function resetTheGame() {
   cars = [];
 
   for (var i = 0; i < 50; i++) {
