@@ -12,6 +12,7 @@ var bg;
 var song1;
 var sound2;
 
+
 function preload() {
   song1 = loadSound('assets/underwatersound.mp3');
   sound2 = loadSound('assets/eating.mp3');
@@ -114,9 +115,11 @@ function Car() {
   this.r = random(255);
   this.g = random(255);
   this.b = random(255);
-  this.birdNum = floor(random(birds.length - 1));
+  this.birdNum = 0 ;//floor(random(birds.length - 1));
   this.timer = 0;
   this.maxTimer = random(10, 30);
+  this.angle = random(1);
+  this.spin = random(-.1, .1);
 
 
   // methods
@@ -125,7 +128,11 @@ function Car() {
     //rect(this.pos.x, this.pos.y, 100, 50);
     //ellipse(this.pos.x - 45, this.pos.y + 25, 50, 50);
     //ellipse(this.pos.x + 45, this.pos.y + 25, 50, 50);
+    push();
+    //rotate(this.angle);
     image(birds[this.birdNum], this.pos.x, this.pos.y, 10, 40);
+    //this.angle += this.spin;
+    pop();
 
     this.timer = this.timer + 1;
     if (this.timer > this.maxTimer) {
@@ -164,7 +171,9 @@ function checkForKeys() {
 
 function game() {
   background("blue");
-  song1.play();
+  if (song1.isPlaying() == false) {
+    song1.play();
+  }
   background(bg);
   fill("lime");
   triangle(x - 40, 400, x - 10, 425, x - 40, 450);
@@ -189,7 +198,6 @@ function game() {
       cars.splice(i, 1);
       sound2.stop();
       sound2.play();
-
     }
   }
 
