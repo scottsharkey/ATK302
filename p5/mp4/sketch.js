@@ -8,10 +8,10 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   setShakeThreshold(50);
-  colorMode(HSB);
-  background(0);
+  //colorMode(HSB);
+  //background(0);
   img.loadPixels();
-  image(img, 17, 17);
+  //image(img, 17, 17);
 }
 
 
@@ -22,5 +22,5 @@ function deviceShaken() {
   var iw = random(100,355);
   var ih = iw*r;
   copy(img,w,h,iw,ih,0,0,windowWidth,windowHeight);
-  background(h, 255, 255);
+  //background(h, 255, 255);
 }
